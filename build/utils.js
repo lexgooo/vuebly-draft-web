@@ -34,7 +34,7 @@ exports.buildEntry = function () {
   // Create entry files array
   fs.readdirSync(config.dev.weexViewsEntries).forEach(file => {
     const name = path.basename(file, path.extname(path.resolve(config.dev.weexViewsEntries, file))).toLowerCase()
-    entry[name] = path.resolve(config.dev.weexViewsEntries, name + '.js')
+    entry[name] = [path.resolve(config.dev.weexViewsEntries, name + '.js')]
   })
   return entry
 }

@@ -18,7 +18,7 @@
     "copy:android": "rm -rf android/app/src/main/assets && cp -rf dist/weex android/app/src/main/assets",
     "copy": "npm run copy:ios && npm run copy:android",
     "debug": "weex-devtool",
-    "dev": "rm -rf entry && node build/webpack.dev.conf.js",
+    "dev": "rm -rf src/entries && node build/webpack.dev.conf.js",
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
