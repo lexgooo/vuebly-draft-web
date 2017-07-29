@@ -93,7 +93,7 @@ var weexModeConfig = merge(baseWebpackConfig('weex'), {
   entry: utils.buildEntry(),
   output: {
     path: config.build.distWeexStatic,
-    filename: 'weex/[name].js'
+    filename: 'js/[name].js'
   },
   plugins: [
     new CopyWebpackPlugin([

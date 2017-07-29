@@ -72,7 +72,7 @@ const weexModeConfig = merge(baseWebpackConfig('weex'), {
   entry: weexEntries,
   output: {
     path: config.build.distRoot,
-    filename: 'views/[name].js'
+    filename: 'weex/[name].js'
   }
 })
 
@@ -89,7 +89,13 @@ configArray.forEach(function (config) {
   // serve webpack bundle output
   app.use(devMiddleware(compiler, {
     publicPath: config.output.publicPath,
-    quiet: true
+    quiet: false,
+    stats: {
+      colors: true,
+      children: false,
+      chunkModules: false,
+      entrypoints: true
+    }
   }))
 
   // Enables HMR hot-reload and state-preserving
