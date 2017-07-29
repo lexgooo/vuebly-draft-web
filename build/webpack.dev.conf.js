@@ -13,13 +13,14 @@ var config = require('./config')
 var baseWebpackConfig = require('./webpack.base.conf')
 var host = require('ip').address()
 var uri = 'http://localhost:' + config.dev.port
+var weexEntries = utils.buildEntry()
 
 const webModeConfig = merge(baseWebpackConfig('vue'), {
   entry: {
     app: [
-      config.dev.entryWeb,
+      config.dev.webEntry,
       'webpack/hot/dev-server',
-      `webpack-dev-server/client/?${ uri }`
+      `webpack-dev-server/client/?${uri}`
     ]
   },
   plugins: [
@@ -42,7 +43,7 @@ const webModeConfig = merge(baseWebpackConfig('vue'), {
 })
 
 const weexModeConfig = merge(baseWebpackConfig('weex'), {
-  entry: utils.buildEntry(),
+  entry: weexEntries,
   output: {
     path: config.build.distWeexStatic,
     filename: 'js/[name].js'
@@ -50,7 +51,7 @@ const weexModeConfig = merge(baseWebpackConfig('weex'), {
 })
 
 console.log('> Starting dev server...')
-new WebpackDevServer(webpack([webModeConfig, weexModeConfig]), {
+new WebpackDevServer(webpack(webModeConfig), {
   disableHostCheck: true,
   port: config.dev.port,
   hot: true,
@@ -59,3 +60,14 @@ new WebpackDevServer(webpack([webModeConfig, weexModeConfig]), {
 console.log(`> Listening at ${ uri }`)
 
 opn(uri)
+
+// }).listen(`${config.dev.port}`, host, function () {
+//   opn(uri)
+//   console.log(`> Listening at ${uri}`)
+// })
+
+// console.log(`> Listening at ${uri}`)
+// server.listen(8080, host, function () {
+//   opn(uri)
+//   console.log(`> Listening at ${uri}`)
+// })

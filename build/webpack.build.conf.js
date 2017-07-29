@@ -19,7 +19,7 @@ spinner.start()
 
 var webModeConfig = merge(baseWebpackConfig('vue'), {
   entry: {
-    app: [config.build.entryWeb]
+    app: [config.build.webEntry]
   },
   output: {
     path: config.build.distWebStatic,
